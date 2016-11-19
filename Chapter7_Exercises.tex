@@ -1,0 +1,229 @@
+
+\chapter{The Spectral-Element Method} 
+
+{\bf Comprehension Questions}
+\begin{enumerate}
+\item
+What is the main difference between classical finite and spectral-element methods. What is the meaning of spectral in this context?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is the free-surface\ix{spectral-element method!free surface} boundary condition? Explain qualitatively why this boundary condition is implicitly fulfilled in finite (and spectral) element methods. Which problems in seismology might benefit from this behaviour?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The spectral-element method allows in principle arbitrary high-order polynomials inside the elements. Can you give a reason why in practice only low-order polynomials (usually $N\leq4$) are used even for large simulations with long propagation distances? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Why can $\sin$ and $\cos$-functions not be used within the $spectral$-element framework, given that they are so efficient for the pseudo$spectral$ method?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the concepts of {\it weak}\ix{spectral-element method!weak form} form and {\it strong}\ix{spectral-element method!strong form} form of the wave equation. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is meant by {\it exact} interpolation at collocation points? Does it  mean the solution is exact everywhere inside an element? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Do you know how the {\it mass} and  {\it stiffness} matrices got their names? Hint: This has to do with the field in which the finite-element method was developed. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Compare finite-difference and spectral-element methods in terms of their potential domains of application in the field of seismic wave propagation. Give arguments.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+{\bf Theoretical problems}
+\begin{enumerate}
+\setcounter{enumi}{8}
+\item
+In the spectral-element method each element has $N+1$ collocation points including the boundaries, where $N$ is the polynomial order. Derive the equation for $ng$ the global number of degrees of freedom (i.e., collocation points) in the 1D case for a problem with $ne$ elements. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate} 
+\item
+We want to find a setup for a simulation task.  Assume that you want to propagate 10000km with velocity of $c=5$km/s. The stability criterion is given by $c \, dt/dx < 0.5$. Assume that 10 points per wavelength are enough to achieve sufficient accuracy. The dominant frequency of your wavefield is $0.2$Hz (i.e., period $5s$ like crustal surface waves). The elements are discretised by Gauss-Lobatto-Legendre\ix{GLL points} points.  Examples  are given in Table~\ref{gll_weights}. Calculate the required number of spectral elements and the time steps for orders N=2, 3, and 4. How many time steps would you roughly expect for each simulation? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The Lagrange polynomials\ix{Lagrange polynomials} of order $N$ are given by 
+\begin{equation}
+\ell_i^{(N)} (x) \ \eqdef \ \prod_{k = 1, \ k \neq i}^{N+1} \frac{x - x_k}{x_i-x_k}, \qquad   i = 1, 2, \dotsc , N + 1 \ .
+\nonumber
+\end{equation}
+Write down all polynomials $\ell_i^{(2)} (x)$ for $N=2$ and general points $x_k$ with $k=1,2,3$. 
+Show that with N=1 you recover the definition of linear basis functions introduced in the chapter on finite elements.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The function $f(x)=1/2 x^2-1/3 x^5$ is defined in  the interval $x\in[0,1]$. Evaluate its integral analytically. Calculate the integral using GLL quadrature\ix{Gauss integration}  for orders $N=1-4$ (see Table~\ref{gll_weights}).  Compare analytical and numerical results.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive the  elemental mass matrix with Lagrange polynomials (Eq.~\ref{AF_4.26}) starting with the general form given in Eq.~\ref{mass}.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Use the recursion formula Eq.~\ref{BS_2.53-2.55} and derive the Legendre\ix{Legendre polynomials} polynomials for order N=0-4. Plot the results in the interval [-1,1]. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+{\bf Programming exercises}
+\begin{enumerate}
+\setcounter{enumi}{14}
+\item
+Use the information on the GLL collocation points in Table~\ref{gll_weights} to write a function $lagrange$ that returns the Lagrange polynomials $i \in[0, N]$ for arbitrary $\xi in [-1,1]$ where $N$ is the order (see equation above).
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Define an arbitrary function $f(x)$ and use the $lagrange$ routine  of the previous problem (or the supplementary material) to calculate the interpolating  function for $f(x)$. Show that the interpolation is exact at the collocation points. Compare the original function $f(x)$ and the interpolating function on a finely spaced grid. Vary the order of the interpolating polynomials and calculate the error as a function of order. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+We want to investigate the performance of the numerical integration scheme (Gauss integration). Based on Table~\ref{gll_weights} write a program that performs GLL integration on the GLL points.  Define a function f(x) of your choice and calculate analytically the integral $\int f(x) dx$ for the interval $[-1,1]$. Perform the integration numerically and compare the results. Modify the function and the order of the numerical integration. Discuss the results. Note: The error of the spatial scheme in the spectral-element method comes only from this integration step. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Use the 1D spectral element code (supplementary material) to determine experimentally the stability limit as a function of the order $N$ of the Lagrange interpolation. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Increase the order of the scheme and observe the necessary decrease of the time step, keeping the Courant criterion constant.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Modify the spectral-element code to allow for space-dependent elastic parameters and density. Introduce a low-velocity zone (-30\%) at the centre of the model spanning 5 elements. Input the source inside this zone and discuss the resulting wavefield. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Introduce $h-$adaptivity\ix{h-adaptivity}  (each element may have different size $h$) to the numerical scheme by making the Jacobian element dependent. Generate a space-dependent mesh size (e.g., decreasing the element size gradually towards the centre). Generate a velocity model that keeps the number of points per wavelength approximately constant.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Use the power of the 1D spectral-element scheme to implement a strongly heterogeneous computational mesh: 1) a low velocity zone on the middle of the region (source in and outside this region); 2) vary the element size using a Gauss function; 3) vary the element size randomly within some bounds. Document the effect on the solution in the homogeneous case. Investigate the effects on the waveforms for the heterogeneous case. Make sure you choose the right time step!
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Define an arbitrary function in the interval [-1,1]. Use the  available {\sffamily{\footnotesize gll}} and {\sffamily{\footnotesize lagrange}} routines to compare the interpolation behaviour of Lagrange polynomials on regular grids vs. GLL points. Plot the energy misfit as a function of polynomial order (Runge phenomenon)\ix{Runge phenomenon}. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}

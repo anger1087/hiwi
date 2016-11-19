@@ -1,0 +1,35 @@
+\documentclass{report}                
+                                         
+\usepackage{afterpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{tikz}
+\makeindex
+
+\setcounter{chapter}{1}
+
+\def\be{\begin{equation}}
+\def\ee{\end{equation}}
+\newcommand{\ix}[1]{\index{#1}}
+\newcommand{\eqdef}{\mathrel{\mathop:}=} % for symbol :=
+
+% Change format of top-level list items
+\setlist[enumerate,1]{label*=\arabic*,font=\bfseries,before=\bfseries}
+% Reset formatting for subsequent levels; label type makes 1.1, legal-style labels
+\setlist[enumerate,2]{label*=.\arabic*,font=\normalfont,before=\normalfont,leftmargin=0em}
+
+\begin{document}
+
+\input{Chapter2_Exercises}
+\input{Chapter3_Exercises}
+\input{Chapter4_Exercises}
+\input{Chapter5_Exercises}
+\input{Chapter6_Exercises}
+\input{Chapter7_Exercises}
+\input{Chapter8_Exercises}
+\input{Chapter9_Exercises}
+\input{Chapter10_Exercises}
+
+\end{document}

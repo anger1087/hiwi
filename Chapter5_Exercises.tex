@@ -1,0 +1,276 @@
+
+\chapter{The Pseudospectral Method} 
+
+{\bf Comprehension Questions}
+\begin{enumerate}
+\item
+Explain the concept of \textit{exact} interpolation behaviour in the context of pseudospectral methods. What are cardinal functions\ix{cardinal functions}? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the meaning of the term {\it pseudospectral}. What is so {\it spectral} about the pseudospectral method?  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Through which concepts can the {\it exact} interpolation or derivative be achieved? What is the price for this accuracy?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Motivate the use of function approximations (e.g., Fourier series\ix{Fourier series}, Chebyshev polynomials\ix{Chebyshev polynomials}) for Earth science problems. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What are the main differences between Fourier and Chebyshev approaches? Give application examples.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Discuss pros and cons of the Fourier method compared with the finite-difference method. Give examples where you would prefer one over the other method. What is the role of computer architecture?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Are there fundamental differences between the numerical dispersion\ix{dispersion!numerical} behaviour of the finite-difference and pseudospectral methods? If so, why?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is the meaning of the convolution theorem\ix{convolution theorem} and its significance concerning numerical differentiation?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The pseudospectral method appears simple, elegant, and very accurate. Why is it not the preferred method of choice today? Could the pseudospectral concept in 2(3)D be combined with the finite-difference method (for space derivatives)? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+{\bf Theoretical Problems}
+\begin{enumerate}
+\setcounter{enumi}{8}
+\item
+How is the orthogonality\ix{orthogonal functions} of functions defined? Show the orthogonality of $sin(nx)$ for $n>0$ evaluating
+\be
+\int_{-\pi}^{\pi} \sin(jx)\sin(kx) dx
+\nonumber
+\ee  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The Fourier coefficients for an odd function can be obtained by
+\be
+b_n \ = \frac{2}{L}\int_0^L f(x) \sin(\frac{n\pi x}{L})dx
+\nonumber
+\ee
+What is the meaning of the Fourier coefficients? Calculate the coefficients $n=1,2,\ldots$ for $f(x)=x$ and $L=1$  and plot the approximate function using
+\be
+g_N(x)=\sum^N_{n=1} b_n \ \sin\frac{n \pi x}{L} \ .
+\ee
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive the Fourier series for $f(x)=x^2$ in the interval $x\in [0,2\pi]$ to recover Eq.~\ref{eq_Fourier_x2}. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+In general, the spectrum $F(k)$ of the derivative of a function $f(x)$ is given by 
+\be
+ F(k)  = \frac{1}{\sqrt{2\pi}}  \int^\infty_{-\infty} f(x) e^{-ikx} dx \ .
+\nonumber
+\ee 
+Use integration by parts to show that - (only by) assuming $f(x)$ vanishes if $x\rightarrow \pm \infty$ we obtain the extremely useful result that 
+$F^{(n)}(k)=(ik)^n F(k)$ is the spectrum of the $n-$th derivative of $f(x)$. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item 
+The fact that we discretise space with $dx$ implies that our wavenumber space is limited by the Nyquist wavenumber\ix{Nyquist wavenumber} $k_{max}=\pi/dx$. Derive the analytical form of the difference operator $d(x)$ by an inverse transform
+\be
+d(x)=\int_{-k_{max}}^{k_{max}}(ik)e^{ikx}dk \ . 
+\nonumber
+\ee
+Hint: Use integration by parts. You need to recover Eq.~\ref{d_conv}. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item 
+Use the concept of the previous exercise to derive the exact interpolation operator
+\be
+d(x)=\int_{-k_{max}}^{k_{max}} e^{ikx}dk \ . 
+\nonumber
+\ee
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive the dispersion relation for the Fourier pseudospectral approximation of the 1D acoustic wave equation applying the von-Neumann analysis\ix{von Neumann analysis}. Hint: Start with the wave equation and insert discrete plane wave trial functions. You want to recover Eq.~\ref{ps_disp}.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Use the definition 
+\begin{equation}
+\begin{split}
+\cos \left[ (n+1) \phi \right] + \cos \left[ (n-1) \phi \right] & \\
+	  \ = \ 2 \cos (\phi) \cos (n\phi)   & 
+\end{split}
+\end{equation}
+to recover the first five Chebyshev polynomials $T_n(\cos(\phi))=\cos(n\phi)=T_n(x)$, $n=1\ldots5$ with $x=\cos(\phi)$.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+{\bf Programming Exercises}
+For the following exercises you can make use of the codes in the supplementary electronic material. 
+\begin{enumerate}
+\setcounter{enumi}{16}
+\item
+Define an arbitrary function (e.g., a Gaussian) and initialise its derivative on the same regular spatial grid. Calculate the numerical derivative using the Fourier method and the difference to the analytical derivative. Vary the wavenumber content of the analytical function. Does it make a difference? Is the derivative always exact to machine precision?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Calculate a program that initialises the Chebyshev differentiation matrix\ix{differentiation matrix!Chebyshev} and perform the same task as in the previous exercise. Note that you need to use the Chebyshev collocation points for the spatial grids. Increase the number of grid points and discuss the difference of grid point distance at the centre and the boundary of the physical domain. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Code a Fourier pseudospectral approximation to the  1D acoustic wave equation from scratch and compare with the analytical solution. Use parameters given in the examples. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Code a Chebyshev pseudospectral approximation to the 1D acoustic wave equation from scratch and compare with the analytical solution. Calculate the derivatives using matrix-vector multiplication as discussed in the text. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Determine numerically the stability\ix{pseudospectral method!stability} limit of the Fourier (and/or Chebyshev) method applied to the 1D (2D) acoustic wave equation by varying the Courant criterion. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Implement a positive velocity discontinuity of 50\% at the centre of the 1D domain. Observe the reflection as a function of dominant wavelength (i.e., change the dominant frequency of the source wavelet). 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Keep the physical and numerical parameters of the Fourier simulation constant and vary the number of grid points $nx$. Add a statement in  the code that measures the run time  (it makes sense to only log the time extrapolation loop). Plot the run time as a function of $nx$ keeping the size of the physical domain constant. Do the same with the Chebyshev code. Compare the required time step as a function of $nx$. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Code the analytical solution to the acoustic wave problem in 1D. Compare the numerical result of the Fourier method with the analytical solution in an appropriate frequency band. Do the same using the basic 1D finite-difference code. Fix the accuracy of the final solution keeping the dominant frequency and propagation distance the same (e.g., 5\%). Find numerical  parameters for the Fourier method and  finite-difference method that lead to the defined accuracy. Compare and discuss the computational setups in terms of memory requirements, number of time steps, Courant criterion, and computation time (compare with Fig.~\ref{fig_el1d_fdps}).
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}

@@ -1,0 +1,271 @@
+
+\chapter{The Finite-Element Method}
+
+{\bf Comprehension questions}
+\begin{enumerate}
+\item In which community was the finite-element method primarily developed? Give some typical problems. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item What are weak\ix{weak form} and strong\ix{strong form} forms of partial differential equations? Give examples. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Discuss the pros and cons of the finite-element method vs. low-order finite-difference methods. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Present and discuss problem classes that can be handled well with the finite-element method. Compare with problems better handled with other methods. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Compare the spatial discretisation strategies of finite-element and finite-difference methods. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Describe the derivation strategy  of finite-element shape functions\ix{shape functions}.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Discuss qualitatively (use sketches) the use of basis functions. Compare with the interpolation properties of the pseudospectral method. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Is the finite-element method a global or a local scheme? Explain.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Why does the finite-element method require the solution of a (possible huge) system of linear equations? What is the consequence for parallel computing?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Why is the classic linear finite-element method not so much used for seismological research today?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the benefits of the finite-element method with respect to Earth models with complex geometries. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+\noindent {\bf Theoretical problems}
+\begin{enumerate}
+\setcounter{enumi}{10}
+\item
+The  advection equation\ix{advection equation} is  
+\be
+ \partial_t q(x,t) + c(x) \partial_x q(x,t) = 0
+  \nonumber
+\ee
+where $q(x,t)$ is the scalar quantity to be advected and $c(x)$ is the advection velocity. Write down the weak form of this equation and perform integration by parts. 
+What happens to the anti-derivative? Does it cancel out at the boundaries like in the 1D elastic wave equation? Note: This is the point of departure for the discontinuous Galerkin method). 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate} 
+\item  
+Are the linear basis functions 
+\begin{equation}
+	\varphi_i (x) = 
+	\begin{cases} \frac{x - x_{i-1}}{x_i - x_{i-1}} \;  \text{for} \;  x_{i-1} < x \leq x_i \\ 
+	\frac{x_{i+1} - x}{x_{i+1} - x_i} \; \text{for} \; x_i < x < x_{i+1} \\
+	\phantom{-} 0 \; \; \; \; \; \; \; \; \; \; \text{elsewhere}
+	\end{cases}
+	\nonumber
+\end{equation}
+orthogonal?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive the formulae for the calculation of the mass matrix\ix{finite-element method!mass matrix} elements (Eq.~\ref{eq_M1} and Eq.~\ref{eq_M2}) by sketching the integration interval, and the corresponding basis functions. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Calculate all entries of the stiffness matrix\ix{finite-element method!stiffness matrix} $ K_{i j} = \int_D \mu \partial_x \; \varphi_i \;  \partial_x \; \varphi_j$ for a static elastic problem with $\mu =70$GPa and $h = 1$m for a problem with $n=5$ degrees of freedom. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+A finite-element system has the following parameters: Element sizes $h=[1, 3, 0.5, 2, 4]$, density $\rho = [2, 3, 2, 3, 2]$kg/m$^3$. Calculate the entries of the mass matrix given by   $M_{ij} = \int_D \rho \; \varphi_i \; \varphi_j \; dx$ using linear basis functions.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+H-adaptivity\ix{h-adaptivity}. For the  simulation with varying velocities and element size with parameters given in Table~\ref{tab_fe_simulation_h}, calculate the time step required for $\epsilon=0.5$ in each of the subdomains. Remember that the stability criterion is $\epsilon=c_{max} dt/dx$ where $c_{max}$ is the maximum velocity in the entire physical domain. Discuss the result. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate} 
+\item
+Follow the approach of the derivation of shape functions and derive the cubic case\ix{basis function!cubic} in 1D: $u(x)=c_1 + c_2 \xi + c_3 \xi^2 + c_4 \xi^3$. What are key differences to quadratic and linear cases?   
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive the quadratic shape\ix{basis function!quadratic}  functions $N(\xi,\eta)$ for 2D triangles with the following node points: 
+\be
+\begin{split}
+&P_1(0,0), P_2(1,0), P_3(0,1),\\
+&P_4(1/2,0), P_5(1/2, 1/2), P_6(0, 1/2)
+\end{split}
+\nonumber
+\ee
+Note: Use Python (or other program) to solve the linear system of equations. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive the quadratic shape functions $N(\xi,\eta)$ for 2D rectangles with the following node points: 
+\be
+\begin{split}
+&P_1(0,0), P_2(1/2,0), P_3(1,0), P_4(1,1/2), \\
+&P_5(1, 1), P_6(1/2, 1), P_7(0,1), P_8(0,1/2)
+\end{split}
+\nonumber
+\ee
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive the derivative matrix\ix{differentiation matrix}  $\textbf{D}$  for the finite-difference based second derivative (Eq.~\ref{eq_diffmat}). Show that when applied to a vector $\textbf{u}$ that contains an appropriate function (e.g., a Gaussian, $\sin$ function) you obtain an approximation of its derivative. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+\noindent {\bf Programming Exercises}
+\begin{enumerate}
+\setcounter{enumi}{20}
+\item
+Write a computer program that solves the 1D static elasticity problem (Eq.~\ref{eq_static_solution}) using finite elements. Also code the finite-difference based relaxation problem\ix{relaxation method} (Eq.~\ref{eq_relax}) and compare the results. Reproduce Fig.~\ref{fig_fe1d_static}. Extend the formulation to arbitrary element sizes.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Code the 1D elastic wave equation using finite elements (Eq.~\ref{eq_fe_solution}).  Determine numerically the stability limit and compare with the finite-difference solution. 
+Implement the analytical solution for the homogeneous case (note: it is  the same as the 1D acoustic wave equation). Compare the numerical dispersion behaviour of the finite-element method with the corresponding low- (or high-) order finite difference method.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Initialise a strongly heterogeneous velocity model with spatially varying element size. Try to match the results with a regular grid finite-difference implementation of the same model. Discuss the two approaches in terms of time step, run time, memory usage. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Plot the high-order 2D shape functions derived in the theoretical problems above.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive a finite-difference based centred differentiation matrix for the 1st derivative. Implement the 1D elastic wave equation in matrix form. Compare with the 1D finite-element implementation. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}

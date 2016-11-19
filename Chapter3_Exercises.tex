@@ -1,0 +1,240 @@
+
+\chapter{Waves in a Discrete World}
+
+{\bf Comprehension questions}
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item
+Describe concepts how important for representing space-dependent functions in a discrete way. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the concept of 2D, 2.5D, and 3D simulations. What problems can arise for $<$3D simulations when comparing with observations?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the concepts of structured and unstructured meshes\ix{mesh}.  Give examples. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Illustrate the differences between regular meshes\ix{mesh!regular} in various coordinate systems: cartesian, cylindrical, spherical. What are the consequences for simulation problems?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is a {\it cubed sphere}\ix{cubed sphere} ?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the concept of Delauney\ix{Delauney triangulation} triangulation and Voronoi cells\ix{Voronoi cells}.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Discuss pros and cons of structured vs. unstructured grids\ix{mesh!structured}. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What are adaptive meshes\ix{adaptive mesh refinement}? Can they be used in seismology?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Give reasons why the generation of meshes\ix{mesh generation} is relevant for seismological problems. Give examples.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What are the basic models for parallel computers\ix{parallel computing!hardware}?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is the most common model of parallelisation for seismic wave propagation and why? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the concepts of strong and weak scaling. \ix{parallel computing!scaling}
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Find some current supercomputers on the internet and extract the main specifications (e.g., number of processors, memory, peak performance, etc.). 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Class exercise: Every student gets an integer number starting with 0. This number denotes the processor. Each students writes four numbers on a page. Perform the following tasks:
+\begin{itemize}
+	\item Single-Instruction-Multiple-Data: The tutor tells all students to multiply each number by 5.
+	\item Embarrassingly parallel problem: Add the first three numbers and subtract the fourth. 
+	\item Circular shift operation: Pass the first number to your right neighbour. If there is none, pass it to the far left neighbour.  
+	\item Global reduce: Find the maximum value of all initial 4 numbers of all processors. Processor 0 speaks out the maximum value loudly. 
+	\item Global distribute: The tutor gives 2 numbers to processor 0. Processor 0 distributes these 2 numbers to all processors.    
+	\item Extend these exercises to your liking. 
+\end{itemize}
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+\noindent {\bf Theoretical problems}
+\begin{enumerate}
+\setcounter{enumi}{14}
+\item
+Classify the following partial differential equations in terms of elliptical, hyperbolic, or parabolic problems:\ix{partial differential equations!classification}
+\be
+\begin{split}
+u_{xx} + 2 c u_{xt} + c^2 u_{tt} &= \ 0 \\
+x u_{xx} - 4 u_{xt} &= \ 0 \\
+u_{xx}  - 6 u_{xt} + 12 u_{tt} &= \ 0 
+\end{split}
+\ee 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Use Eq.~\ref{m_scaling} to find out what fraction of the code needs to be parallel to achieve a speed up of 10000 for 20000 processors. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+You want to simulate a physical domain of size (or side length) 1000km with a grid distance of 1km. Estimate the required memory of one space-dependent field (double precision) in 1D, 2D, and 3D. 
+Compare with the RAM of your smart phone, laptop, and with the specifications of current supercomputers. Discuss the results.\ix{parallel computing!memory}
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+\noindent {\bf Programming exercises}
+\begin{enumerate}
+\setcounter{enumi}{17}
+\item
+Write a program (e.g., Matlab, Python) that generates arbitrary point clouds. Triangulate them using the Delauney method. Calculate and visualise the corresponding Voronoi cells. Find appropriate libraries to carry out the tasks. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Distributed data: Write a small parallel program using (e.g., Fortran/MPI or pyMPI). Define a matrix A(2000,2000) and distribute it on $n$ processors. Initialise it with random numbers and extract minimum and maximum values. Perform operations on the matrix in a loop and time the operations. Compare to the serial case $n=1$. 
+ and distributed task parallelism. \ix{parallel computing!MPI}
+ \begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Task parallelism: Write a small parallel program using (e.g., Fortran/MPI or pyMPI). Load a seismogram trace. In one processor calculate filtered seismograms (e.g., looping through lowpass filters with various corner frequencies). In a second processor perform an equal number of subsequent auto-correlations. Time the parallel and serial codes and compare the results. Note: If you use Python the ObsPy library offers tools for seismic data processing.   
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Search for open-source mesh generators (e.g., $MeshPy$), invent some simple geometries, generate $vtk$ (visualisation toolkit) files and visualise them (e.g. with $paraview$).
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Install the $ObsPy$ Python library (www.obspy.org). Follow the tutorials and investigate the potential to access and process observed and/or simulated seismic data. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Use $ObsPy$ to download data from any seismic station you are interested in for the M9.1 Tohoku-Oki earthquake March 11,2011. Save the data using the $ASDF$ format (seismic-data.org). Explore the provenance options.   \ix{parallel computing!provenance}
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}

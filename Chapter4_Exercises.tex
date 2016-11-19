@@ -1,0 +1,380 @@
+
+\chapter{The Finite-Difference Method} 
+
+{\bf Comprehension questions}
+\begin{enumerate}
+\item Characterise problems that necessitate the use of numerical methods such as finite differences.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Are finite-difference based approximations of partial-differential equations unique (give arguments)?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item What strategies are there to improve the accuracy of finite-difference derivatives? Give the procedures in words.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item	What is stability\ix{stability} in connection with finite-difference algorithms, give the relevant condition for the 1D wave propagation problem. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item What is convergence\ix{convergence}? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item What is the difference between physical and numerical dispersion\ix{dispersion}?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Which propagation direction is most accurate on a rectangular (square) grid? Can you suggest any reasons why this might be so?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Give strategies to check whether a finite-difference simulation is accurate (a - homogeneous medium, b - strongly heterogeneous medium)? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Explain why staggered-grids\ix{staggered grid} appear to be useful for the elastic wave equation. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item What is the difference between phase- and group velocity? To be on the safe side, which velocity should be accurately modelled, and why? \ix{phase velocity}\ix{group velocity}
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Are finite-difference methods easily parallelised using domain decomposition? Do processors need to communicate with each other? Make an illustration for a 2D problem.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Explain why for Earth models with large variations in seismic velocities, varying the grid cell size is highly desirable. What is the problem with having to have a global time step $dt$ though (i.e., one $dt$ for all grid cells) ?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+{\bf Theoretical problems}
+\begin{enumerate}
+\setcounter{enumi}{12}
+\item
+Show that 
+\be
+\frac{f(x+dx) - 2f(x) + f(x-dx)}{dt^2} 
+\nonumber
+\ee
+is an approximation for the second derivative of $f(x)$ with respect to $x$ at position $x$. Hint: Use Taylor series\ix{Taylor series} 
+\be
+f(x+dx)=\sum_{n=0}^\infty \frac{f^{(n)}(x)}{n!}dx^{n}  
+\nonumber
+\ee
+where $f^{(n)}(x)$ is the $n$-th derivative of $f(x)$.
+What is the leading order of the error term?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive the numerical dispersion equation (Eq.~\ref{eq_numdisp}) for the 1D acoustic wave equation using the von-Neumann analysis.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Use Taylor's theorem to approximate  the derivative of $f(x)$ with the functional values given by $f(x+dx/2)$ and $f(x-dx/2)$. What is the order of accuracy? You are not happy with this accuracy and would like to have a higher-order approximation. Calculate the derivative weights, if you also use information at points $x+3/2 dx$ and $x-3/2 dx$.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Generalise the procedure of the previous exercise and derive equations for the system matrix A (Eq.~\ref{eq_A}) for centred and staggered-grid  finite difference operators of arbitrary length.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+You want to estimate the derivative of a function $f(x)$ near a boundary using the high-order finite-difference method. Develop the required system matrix and calculate the one-sided derivative weights for operators of arbitrary length. Hint: Define the derivative at $f(x+dx/2)$ and search for weights at $f(x)$ and $f(x+n dx)$. Discuss the results. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item 
+The source-free advection equation\ix{advection equation} is given by 
+\begin{displaymath}
+\partial_t u(x,t) =  v \partial_x u(x,t) 
+\end{displaymath}
+where $u(x,t=0)$ could be a displacement waveform at $t=0$ (an initial condition) that is advected with velocity v (this will become important in the chapter discussing finite volumes and the discontinuous Galerkin method). Replace the partial derivatives by finite-differences. Which approach do you expect to work best? Turn it into a programming exercise and write a simple finite-difference code and play around with different schemes (centered vs. non-centered finite differences). What do you observe? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+A seismometer\ix{seismometer equation} consists of a spring with damping parameter $\epsilon$, and eigenfrequency $\omega_0$. The seismometer is excited by the (given) ground motion $\ddot{u}(t)$. The relative motion of the seismometer mass x(t) is governed by the following equation
+\begin{displaymath}
+\ddot{x}+2\epsilon \dot{x} + \omega^2_0 x = \ddot{u}
+\end{displaymath}
+Replace the derivatives on the l.h.s. with finite differences. Solve for $x(t+dt)$. Note: a good strategy in this example is to center the differences at the same point in time.  The dots denote time derivative. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item 
+Certain isotopes (e.g., $_9$Be) are washed into the sea by rivers and then mixed by advection through ocean currents and diffusion. In addition, the isotopes are removed from the system through biomechanical processes (e.g., death). These processes can be described by the diffusion-advection-reaction equation\ix{diffusion-advection equation} (concentration $C(x,t)$, diffusivity $k$ (const), reactivity $R(x)$, source $p(x)$, advection velocity $v$). Substitute in the 1-D equation below the partial differentials with finite differences and extrapolate to $C(t+dt)$: 
+\begin{displaymath}
+\partial_t C = k \partial^2_x C + v \partial_x C - R C + p
+\end{displaymath}
+How could a {\it ring-current} be simulated with this 1-D equation mimicking an oceanic gyre? What do you think is the best choice for the finite-difference formulation and why?   
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+You want to simulate 2-D acoustic wave propagation in a medium with size 1000km x 1000km. You want to model wave propagation up to a period of 10s. The maximum velocity c is 8km/s, the minimum velocity is 4km/s. Your numerical algorithm requires 20 grid points per wavelength to be accurate for the propagation distances of interest. What space increment dx do you need for the simulation?
+The stability criterion says that maximum velocity c, space increment dx and time increment dt are related by $\epsilon=c dt/dx$. You want a seismogram length of 500s. How many time steps do you have to simulate, when $\epsilon$=0.5? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item 
+Show that when setting the Courant\ix{CFL criterion} criterion to $\epsilon=1$ for the homogeneous acoustic problem with constant $dt$ and $dx$ (in other words the physical velocity $c=dx/dt$) there is no numerical dispersion. 
+Hint: Make use of equation Eq.~\ref{num_phase}. What is the relevance for practical applications?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Choose an appropriately tight formulation for the discretised fields (see examples in the text) and write down the finite-difference extrapolation scheme for the 3D acoustic wave equation ($\Delta$ is the Laplace operator) 
+\be
+\partial^2_t p(x,y,z,t) = c(x,y,z)^2 \Delta p(x,y,z) + s(x,y,z,t) \ . 
+\nonumber
+\ee 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Show that the Nyquist wavenumber\ix{Nyquist wavenumber} corresponds to two grid increments per wavelength. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Following the von Neumann analysis\ix{von Neumann analysis} based on plane waves in the text calculate the stability limit (i.e., CFL criterion) for the 3D acoustic wave equation (see previous exercise). 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Following the developments in the section on staggered grids write down the 2nd order 3D elastic wave equation in the displacement formulation, as well as    the stress-strain relation, and the strain-displacement relation. Find an appropriate 3D staggered-finite difference cell where the derivatives are calculated in-between the functional values (e.g., strain components as the derivatives of displacement components). 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item 
+You want to simulate global wave propagation. The highest frequencies that we observe for global wave fields is 1Hz. Let us for simplicity assume a homogeneous Earth. The P velocity $v_p=10$km/s and the $v_p/v_s$-ratio is $\sqrt{3}$. Let us assume 20 grid points per wavelength. How many grid cells would you need (assume cubic cells). What would be their size? Now let us be more realistic. The maximum P-velocity in the Earth is 14km/s and the smallest P-velocity is 1.5km/s in the oceans, or 5km/s in the crust. Assume that you can only have one grid size for the whole Earth. Estimate the number of cells, their size and the required time step. The CFL criterion $\epsilon$=0.5.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The strain-displacement relation is given by 
+\be
+\epsilon_{ij}=\frac{1}{2}(\partial_i u_j + \partial_j u_i)
+\nonumber
+\ee
+Write down this relation in 2D\ix{staggered grid}. Allocate strain and displacement components to the four symbols such that there is a consistent scheme for a finite-difference method with a two-point operator for the first derivative. The central square corresponds to elements ij (e.g., $x\rightarrow i$; $y \rightarrow j$). Is the mapping unique?  
+\begin{figure}
+\begin{center}
+\includegraphics[scale=.3]{Figs/fig_fd_ex_grid.png}
+\label{fig_fd_ex_grid}
+\end{center}
+\end{figure}
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+{\bf Programming Exercises} \\
+For the following exercises also refer to the supplementary electronic material. 
+\begin{enumerate}
+\setcounter{enumi}{28}
+\item
+Write a computer program for the 1D (2D) acoustic wave equation following the equations presented in this chapter. Implement the analytical solution (see Chapter 2) and try to match it with appropriate parameters. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Determine numerically the stability\ix{stability} limit of 1D and 2D implementations of the acoustic wave equation as accurately as possible by varying the stability criterion.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Increase the dominant\ix{anisotropy!numerical} frequency of the wavefield in 2D. Investigate the  behaviour of the wavefield as a function of azimuth. Why does the wavefield look anisotropic? Which direction is the most accurate and why?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Extend the (1D and/or 2D) codes by adding the option to use a 5-point  operator for the 2nd derivative. Compare simulations with the 3-point and 5-point operator. Is the stability\ix{stability} limit still the same? Make it an option to change between 3-pt and 5-pt operator. Estimate the number of points per wavelength you are using and investigate the accuracy of the simulation by looking for signs of numerical dispersion in the resulting seismograms. The 5-pt weights are: $[-1/12, 4/3, -5/2, 4/3, -1/12]/dx^2$. 
+Extend the (1D and/or 2D) codes by adding the option to use a 5-point  operator for the 2nd derivative. Compare simulations with the three-point and five-point operator. Is the stability\ix{stability} limit still the same? Make it an option to change between 3-pt and 5-pt operator. Estimate the number of points per wavelength you are using and investigate the accuracy of the simulation by looking for signs of numerical dispersion in the resulting seismograms. The 5-pt weights are: $[-1/12, 4/3, -5/2, 4/3, -1/12]/dx^2$. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item 
+Modify the program such that at the end of the calculation you can visualise and output synthetic seismograms. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Modify the 2D velocity model $c$ in $ac2d$ and observe and discuss the resulting wavefield. 1) Add a low (high) velocity layer near the surface. Inject the source in this layer. 2) Add a vertical low velocity zone (fault zone)\ix{fault zone} of a certain width (e.g. 10 grid points), and discuss the resulting wavefield (fault zone trapped waves). 3) Simulate topography\ix{topography} by setting the pressure to 0 above the surface. Use a Gaussian hill shape or a random topography\ix{random media}.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+ Use a spike source time function and look at the resulting seismogram. Examine the spectrum of  this  {\it Green's function}. Do you spot the numerical noise? 
+Convolve the resulting seismograms with an appropriate source time function (e.g., a Gaussian of appropriate length). What happens with the numerical noise?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Source-receiver reciprocity\ix{reciprocity}. Initialise a strongly heterogeneous 2D velocity model of your choice and simulate waves propagating from an internal source point ($x_s, z_s$) to an internal receiver ($x_r, z_r$). Show that by reversing source and receiver you obtain the same seismograms.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Time reversal\ix{time reversal}. Define  a source at the centre of the domain in an arbitrary 2D velocity model and a receiver circle at an appropriate distance around the source. Simulate a wavefield, record it at the receiver ring and store the results. Reverse the synthetic seismograms and inject them as sources at the receiver points. What happens? Explain the results?   
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate} 
+\end{enumerate}

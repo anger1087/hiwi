@@ -1,0 +1,258 @@
+
+\chapter{The Finite-Volume Method}
+
+{\bf Comprehension questions}
+\begin{enumerate}
+\item What is the connection between finite-volume methods and conservation equations\ix{conservation laws}?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item What is meant by a finite {\it volume}, is there any difference to a finite {\it element}?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item If you look at the upwind\ix{upwind scheme} approach to the scalar advection problem (Eq.~\ref{fv_discrete}), why is the finite-volume method so closely linked to staggered-grid finite-difference schemes? Explain.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item What are the main  advantages of finite-volume methods compared with finite-difference methods?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Explain the Riemann problem\ix{Riemann problem} and illustrate why it is so essential for finite-volume schemes. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item In what areas of natural sciences are finite-volume schemes mostly used. Explore the literature and try to give reasons.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item What is numerical diffusion\ix{diffusion!numerical}? Why is it relevant for finite-volume methods?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item What is the connection between reflection/transmission coefficients of seismic waves and the finite-volume method? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item The finite-volume method extrapolates cell averages. What strategies do you see to extend the method to high-order accuracy?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+\noindent {\bf Theoretical problems}
+\begin{enumerate}
+\setcounter{enumi}{9}
+\item
+Show that Eq.~\ref{fv_nut_scalar} is a finite-difference solution to the equation $\partial_t Q-a\partial_x Q=0$ using a forward difference in space. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item  
+Derive the upwind scheme Eq.~\ref{fv_semi} starting with the scalar advection equation. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The stability\ix{finite-volume method!stability} criterion for the finite-volume method is $c dt/dx \leq 1$.  Starting with Fig.~\ref{fig_fv_upwind} derive this stability criterion from first principles. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Starting with the advection equation\ix{advection equation} $\partial_t Q-a\partial_x Q=0$ derive the second-order wave equation by applying the so-called Cauchy-Kovalevskaya procedure (see text).
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Following the finite-volume approach based on the divergence theorem calculate the spatial derivative operator for the hexagonal cell shown in Fig.~\ref{fig_fv_ex_1} and functional values defined at three points $P_i$. 
+ \begin{figure}
+\begin{center}
+\includegraphics[scale=.4]{Figs/fig_fv_ex_1.png}
+\end{center}
+\caption{Hexagonal grid cell with functional values defined at three points.} 
+\label{fig_fv_ex_1}
+\end{figure}
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The linear system\ix{finite-volume method!linear system} for elastic wave propagation in 1D (transverse motion) is given in Eq.~\ref{fv_ls_tranverse}. The wave equation can also be formulated for compressional waves using the compressibility $K$ as elastic constant. Reformulate the linear system for acoustic wave propagation and calculate the eigenvalues of the resulting  matrix $\mathbf{A}$.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+For either an elastic or an acoustic linear system derive the eigenvectors of  matrix $\mathbf{A}$, the matrix of eigenvectors and its inverse. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Show that the superposition of left- and right-propagating stress and velocity waves (Eq.~\ref{fv_homo_ana}) are solutions to the linear system of equations (Eq.~\ref{fv_ls_tranverse}) for elastic wave propagation. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Show that a discontinuity of the form $\Delta Q = [1,0]$ leads to an equi-partitioning of two seismic waves propagating in opposite directions. Start with the Riemann problem formulated for the homogeneous case (Eq.~\ref{fv_riemann_homo}). 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Derive reflection and transmission coefficients for seismic waves with vertical incidence by considering the Riemann problem for material discontinuity (Eq.~\ref{fv_refcoef}). 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Show that the derivation of the reflection and transmission coefficients (Eq.~\ref{fv_refcoef}) is also possible assuming a left-propagating wave with eigenvector $\Delta Q = [-Z_r, 1]$. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+\noindent {\bf Programming Exercises}
+\begin{enumerate}
+\setcounter{enumi}{20}
+\item
+Write a finite-volume algorithm for the scalar wave equation from scratch, implementing both the Euler upwind and the Lax-Wendroff schemes. Implement the scheme such that you can easily change between the two approaches. Compare the solution behaviour and discuss the results. 
+To start, use the parameters given in Table\ref{tab_fv_scalar}. Code the analytical solution and compare the results with the numerical solution. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Determine the stability limit of the Euler\ix{finite-volume method!Euler}  and Lax-Wendroff\ix{finite-volume method!Lax Wendroff}  schemes for the scalar advection equation.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Create a highly unstructured 1D mesh and investigate the accuracy of the finite-volume method (Lax-Wendroff) for the scalar advection problem.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Investigate the concept of trapped elastic waves by inserting an initial condition in a low-velocity region. Use the Lax-Wendroff algorithm in 1D.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Implement circular boundary conditions in the 1D elastic Lax-Wendroff solution. Initiate a sinusoidal function $f(x)=sin(kx)$ that is advected in one direction. Investigate the accuracy of the finite-volume scheme as a function of wavelength and propagation distance by comparing with the analytical solution.   
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The finite-volume method is supposed to conserve energy\ix{energy conservation} in the homogeneous case. Use the computer programs for scalar advection, set up an example and calculate the total energy in the system for each time step. Check whether it is conserved. Explore this problem for the heterogeneous case.   
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Scalar advection problem: Advect a Gaussian shaped waveform as long as you can and extract the travel time difference with the analytical solution in an automated way using cross-correlation. Plot the time error as a function of propagation distance and your simulation parameters (e.g., grid points per wavelength, Courant criterion\ix{finite-volume method!CFL}). 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate} 
+\end{enumerate}

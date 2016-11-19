@@ -1,0 +1,312 @@
+
+\chapter{Seismic Waves and Sources}
+
+{\bf Comprehension questions}
+\begin{enumerate}
+\item
+Search for recent or current research projects using seismic methods (e.g., exploration seismics, global seismology, volcanology, laboratory studies, geotechnical problems). Collect information on frequency ranges, size of sensor networks, and discuss consequences for seismic simulation problems.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Search for papers with seismic simulations, extract information on propagation length and scattering properties of the Earth models. Place these parameters in the phase space of scattering problems shown in Fig.~\ref{fig_waves_aki}.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What geophysical parameters make up the Earth model when the isotropic (anisotropic, viscoelastic) elastic wave equation is used? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Seismic velocities are functions of inverse density. Doesn't that mean the denser the medium the slower seismic velocities are? Explain! 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is the difference between the {\it velocity-stress} and the {\it displacement-stress} elastic wave equation? Is the solution the same?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Describe the various rheologies for seismic wave propagation. How would you rate them in terms of  modelling real seismic observations?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is reciprocity? How can this principle be used in seismic wave problems?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is time reversal in the context of the wave equation? Find applications in seismology and medicine!
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain qualitatively the physical  model for an earthquake point source! What parameters would you expect in a file that initialises an earthquake simulation? Are the point source properties uniquely defined given seismic observations?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the concept of wave dispersion using Love and Rayleigh waves. Describe their dispersive behaviour for various basic Earth models (half space, layered half space).  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What boundary conditions are relevant for seismic simulation problems? Give examples. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the vector wave field operators gradient, divergence, and curl for seismic wave simulations (and observations). Why are seismic array measurements relevant in this context?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain the concept of linear systems, convolution, the convolution theorem, and its relevance for wave simulations. What is the difference between analytical and numerical Green's functions?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+\noindent {\bf Theoretical problems}
+\begin{enumerate}
+\setcounter{enumi}{12}
+\item
+Get information on the PREM model for global Earth structure (see Fig.~\ref{fig_waves_prem}) and calculate the maximum and minimum seismic wavelengths (P and/or S waves) for frequencies $1.0, 0.1, 0.01 Hz$. Where do they occur? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Using the basic form of the 3D isotropic elastic wave equation, derive the 2D version by assuming invariance of all fields in $y$-direction. Show that you obtain two independent (sets of) equations. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Write out all components of the 3D isotropic elastic wave equation in $u_x, u_y, u_z$ in the displacement formulation. Follow the strategy presented in Eq.~\ref{weq_u2}.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Inject the trial solution $p(x,t)=p_0 e^{i(kx-\omega t)}$ into the source-free 1D acoustic wave equation $\partial^2_t p = c^2 \partial_x^2 p$. Discuss the solution.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Show that $p(x,t)=f(x-ct) + f(x+ct)$ is a general solution to the wave equation $\partial^2_t p = c^2 \partial_x^2 p$. Discuss the result. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Assume two monochromatic plane waves propagating in x-direction: a) P-wave $u_x=A_x \sin (kx-\omega t)$ and b) S-wave $u_y=A_y \sin(kx-\omega t)$. Calculate in both cases the elements of stress and strain  tensors. Assume that it is possible to observe the z-component of the curl $\nabla \times \textbf{u}$. The rotation  rate around a vertical component is given as the time derivative of the curl applied to the displacement field. How is the vertical component of rotation rate related to the transverse acceleration $\partial^2_t u_y$ (S-wave)? Would the P-wave contribute to the curl? Discuss the potential of this result. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Follow the approach described in the previous exercise. Find a way to obtain phase velocity from collocated measurements of strain and displacement (or velocity or acceleration) from body waves in an infinite space. Which components do you have to combine?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The 2003 Hokkaido earthquake (M8.1) lead to a maximum horizontal displacement of 1.5cm for Love waves of approximately 25 seconds period recorded in Germany. Estimate the maximum dynamic strain induced by the passing wavefield for a horizontal phase velocity of 5km/s. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Show that for attenuation the relation for the amplitude decay  
+$
+A(t) = A_0 e^{-\frac{\omega t}{2 Q}} $
+holds if  
+$\delta = \ln(A_1/A_2)$ 
+relates two subsequent amplitudes, 
+$ Q = \pi / \delta $
+  and the wave propagates one cycle.
+  \begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is the ratio between maximum S- and maximum P-wave amplitudes in the far field of a homogeneous medium for a double-couple point source? Use Eq.~\ref{dc_analytical} and discuss implications for engineering seismology. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item Estimate the difference of arrival times for Love and Rayleigh waves propagating at various periods [T=50s,200s] to a distance of 10000km. Refer to Fig.~\ref{fig_waves_surface_dispersion}.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Show (e.g., graphically) that
+\be
+\delta_a(x)=\frac{1}{\sqrt{2\pi a}}e^{-\cfrac{x^2}{2a}}
+\ee
+converges to a $\delta$-function as $a\rightarrow 0$. Show that $\int\delta_a(x)dx=1$ for any $a$.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+{\bf Computational exercises}
+\begin{enumerate}
+\setcounter{enumi}{22}
+\item
+Write a computer program that uses vertical incidence reflection and transmission coefficients (ignore multiples) to calculate Green's functions for a 1D model with a few layers. Apply the  convolution model to the Green's function and calculate synthetic seismograms convolving the Green's function with a source time function (e.g., a Gaussian) according to Eq.~\ref{waves_conv}. Discuss the results. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Use Eq.~\ref{dc_analytical} to write a program for Green's functions in arbitrary directions. Investigate the radiation pattern and polarisation behaviour of body waves. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Plot the 3D radiation patterns $A^x$ for P and S far-field energy in Eq.~\ref{dc_analytical}. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Write a program that plots the scalar moment $M_0$ as a function of energy magnitude $M_w$ (Eq.~\ref{eq_Mw}).
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Stress drops $\Delta\sigma$ usually vary between 1 and 10 MPa. Use the relation between stress drop, scalar moment, and (circular) rupture radius to plot the expected radii for varying magnitudes for given stress drop. Carefully check physical units!
+\begin{enumerate}
+\item[] 
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Write a computer program to check the reciprocity principle with the far-field solutions of Eq.~\ref{dc_analytical}. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Write a computer program that initialises a random 2D velocity perturbation by spatially low-pass filtering random numbers using transform methods. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}

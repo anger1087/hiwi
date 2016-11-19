@@ -1,0 +1,207 @@
+
+\def\dG{discontinuous Galerkin method}
+\def\dGs{discontinuous Galerkin method }
+\def\DG{Discontinuous Galerkin method}
+
+\chapter{The Discontinuous Galerkin Method} 
+
+{\bf Comprehension Questions}
+\begin{enumerate}
+\item
+List the key  points that led to the development of the discontinuous Galerkin method in seismology? Discuss the pros and cons of the method compared to finite-element type methods and the finite-difference method. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain qualitatively the difference between nodal and modal approaches. \ix{\dG !nodal}\ix{\dG !modal}
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explain why the \dGs lends itself to parallel implementation on supercomputer hardware. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item 
+What are $p-$ and $h-$adaptivity? \ix{h-adaptivity}\ix{p-adaptivity} Why is it straight forward to have this adaptivity with the \dGs and not with others? Give examples  in seismology where this adaptivity can be exploited and why. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is local time-stepping? \ix{local time stepping}For what classes of Earth models and/or problems in seismology might it be useful?
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+What is the problem that arises on computers when using algorithms with h-/p-adaptivity and local time stepping? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Compare the spectral-element and the discontinuous Galerkin methods as described in this book. Point out their strong similarities and their differences. Based on this discussion formulate domains of application.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+{\bf Theoretical Problems}
+\begin{enumerate}
+\setcounter{enumi}{7}
+\item
+Show that the advection problem\ix{advection equation} $\partial_t q + a \partial_x q = 0$ has a hyperbolic form. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+The coupled 1D wave equation for longitudinal velocity $v$ and pressure $p$ can  be formulated with compressibility $K$ and density $\rho$ as  
+\be
+\begin{split}
+\partial_t p + K \partial_x v &= 0 \\
+\partial_t v + \frac{1}{\rho} \partial_x p &= 0 \ .
+\end{split}
+\ee
+Formulate the coefficient matrix $A$ of the coupled system of equations. Calculate its eigenvalues and eigenvectors. Compare with the solutions developed in this chapter for transversely polarised waves.  
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Show that the rule of integration by parts corresponds to Gauss' theorem\ix{integration by parts} in higher dimensions (assuming one of the functions under the integral to be unity). Explain the relevance of this for the \dG. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Show that setting $\alpha=0$ in Eq.~\ref{eq_flux} leads to the upwind flux scheme. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Discuss the size of all matrices and vectors for the 1D solution presented in Eq.~\ref{dg_solution}.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Search in the literature for the {\it classical} 4-term Runge-Kutta method. Formulate a pseudo-code for the scalar advection problem for this extrapolation scheme. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
+
+{\bf Programming Exercises}
+\begin{enumerate}
+\setcounter{enumi}{13}
+\item
+Apply the 1D discontinuous Galerkin solution for the scalar advection problem and find numerically the stability limit for the Euler scheme and the Lax-Wendroff scheme. Vary the polynomial order and investigate whether the stability limit changes. Compare with the stability behaviour of the finite-difference method for similar grid point density. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+How {\it discontinuous} is the discontinuous Galerkin method? For the example problems given in the supplementary material extract the field values at the element boundaries from the adjacent elements and calculate the relative amount of the field discontinuity. How do the discontinuities compare with the flux values? 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Formulate an upwind\ix{upwind scheme} finite-difference scheme for the scalar advection problem and write a computer program. Discuss the diffusive behaviour. Compare with the results of the scalar discontinuous Galerkin implementation. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Modify the sample code such that each element can have its own polynomial order ($p$-adaptivity) and size ($h-$adaptivity). (Suggestion: Initialise the size of the solution  matrices using the maximum number of degrees of freedom $N^p_{max}$).     
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Extend the sample code for the scalar advection problem to the 4-term Runge-Kutta\ix{Runge-Kutta method} method. Compare the accuracy of the method with the lower order extrapolation schemes as a function of spatial order $N$ inside the elements. 
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Formulate the analytical solution to the advection problem (see chapter on the finite-volume method) and plot it along with the numerical solution in each time you visualise during extrapolation. Formulate an error between analytical and numerical result. Analyse the solution error as a function of propagation distance for the Euler scheme and the predictor-corrector scheme.
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\item
+Explore the $p-$ and $h-$ adaptivity of the \dGs $\ $ in the following way. Using an appropriate Gaussian function defined on the entire physical domain decrease the element size by a factor of 5 towards the centre of the domain. Find an appropriate variation of the order inside the elements to obtain a reasonable computational scheme (in the sense that the grid point distance does not vary too much). Hint: Use high order schemes at the edges of the physical domain and low(est) order schemes at the centre of the domain.   
+\begin{enumerate}
+\item[]
+\item[]
+\item[] 
+\item[]
+\item[] 
+\end{enumerate}
+\end{enumerate}
